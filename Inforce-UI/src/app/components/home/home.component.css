@@ -1,0 +1,26 @@
+body {
+   background: linear-gradient(to top, rgba(191, 150, 214, 0.666) 50%, rgb(123, 186, 207) 90%) no-repeat;
+}
+
+.login-icon {
+   position: absolute;
+   top: 0;
+   right: 0;
+   margin: 10px;
+   font-size: 20px;
+}
+
+.login-icon a {
+   display: flex;
+   align-items: center;
+   color: #333;
+   text-decoration: none;
+}
+
+.login-icon i {
+   margin-right: 5px;
+}
+
+button {
+   background-color: rgba(215, 186, 243, 0.666);
+}

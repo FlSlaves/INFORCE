@@ -1,0 +1,49 @@
+
+   <head>
+      <title>Пошук</title>
+
+   </head>
+<body>
+
+
+      <div class="container">
+         <div class="input-container">
+            <div class="input-label">Search for something:</div>
+            <input [(ngModel)]="urlEdit.urlName" type="text" placeholder="Введіть пошуковий запит">
+         </div>
+         <div (click)="getUrl(urlEdit)" class="button-container">
+            <button>Пошук</button>
+         </div>
+      </div>
+<table *ngIf="tableMode" cellpadding="12" class="table table-bordered table-hover">
+   <tr>
+      <td>
+         <b>Url Name</b>
+      </td>
+      <td>
+         <b>Standart Url</b>
+      </td>
+      <td>
+         <b>Coded Url</b>
+      </td>
+      <td>
+         <b>Created By</b>
+      </td>
+      <td>
+         <b>Created On</b>
+      </td>
+      <td>
+         <b>Short Url</b>
+      </td>
+
+   </tr>
+   <tr *ngFor="let u of URLs">
+      <td>{{u.urlName}}</td>
+      <td>{{u.url}}</td>
+      <td>{{u.codedUrl}}</td>
+      <td>{{u.createdBy}}</td>
+      <td>{{u.createdOn}}</td>
+      <td>{{u.shortUrl}}</td>
+   </tr>
+</table>
+</body>

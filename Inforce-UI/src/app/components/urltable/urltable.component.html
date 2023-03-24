@@ -1,0 +1,61 @@
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+<body>
+
+<table *ngIf="tableMode; else create" cellpadding="12" class="table table-bordered table-hover">
+   <tr>
+      <td>
+         <b>Url Name</b>
+      </td>
+      <td>
+         <b>Standart Url</b>
+      </td>
+      <td>
+         <b>Coded Url</b>
+      </td>
+
+
+   </tr>
+   <tr *ngFor="let u of URLs">
+      <ng-template  [ngIf]="urlEdit.id != u.id" [ngIfElse]="edit"></ng-template>
+      <td>{{u.urlName}}</td>
+      <td>{{u.url}}</td>
+      <td>{{u.codedUrl}}</td>
+      <td *ngIf="isVisible">
+         <div *ngFor="let c of canDelete">
+         <button *ngIf="c.id == u.id && c.canDelete == true" (click)="editUrl(u)" class="w3-btn w3-ripple btn btn-success">&#9998; Edit</button>
+         <button *ngIf="c.id == u.id && c.canDelete == true" (click)="deleteUrl(u)" class="w3-btn w3-ripple btn btn-danger">&#9003; Delete</button>
+         </div>
+      </td>
+   </tr>  
+</table>
+<button (click)="initNewUrl()" class="w3-btn w3-ripple btn btn-success">&#1212; Create new Record</button>
+
+<!--шаблон для редактирования-->
+<ng-template #edit>
+   <td>
+      <input type="text" [(ngModel)]="urlEdit.urlName" class="form-control" />
+   </td>
+   <td>
+      <input type="text" [(ngModel)]="urlEdit.url" class="form-control" />
+   </td>
+   <td>
+      <input [disabled]="true" type="text" [(ngModel)]="urlEdit.shortUrl" class="form-control" />
+   </td>
+   <td>
+      <input type="button" value="Save" (click)="updateUrl(urlEdit); cancel()" class="btn btn-sm btn-success" />
+      <input type="button" value="Cancel" (click)="cancel()" class="btn btn-sm btn-warning" />
+   </td>
+</ng-template>
+
+<ng-template #create>
+<h5>Input new url to create a short version!</h5>
+   <td>
+      <input type="text" [(ngModel)]="urlEdit.url" [(ngModel)]="urlEdit.shortUrl" class="form-control" />
+      <input  type="text" [(ngModel)]="urlEdit.urlName" class="form-control" />
+   </td>
+   <td>
+      <input type="button" value="Save" (click)="createUrl(urlEdit)" class="btn btn-sm btn-success" /><br>
+      <input type="button" value="Cancel" (click)="cancel()" class="btn btn-sm btn-warning" />
+   </td>
+</ng-template>
+</body>

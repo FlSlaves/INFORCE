@@ -1,0 +1,22 @@
+
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+
+   <div class="outer">
+   <form [formGroup]="loginForm"  action="/login" method="post">
+   <h1>Login</h1>
+   <div class="form-gpoup pt-3">
+   <label for="email">Email:</label>  
+   <input formControlName="email" type="email" placeholder="Email">
+   </div>
+   <small *ngIf="loginForm.controls['email'].dirty && loginForm.hasError('required','email')" class="text-danger">Email is required!</small>
+   <div class="form-gpoup pt-3">
+   <label for="password">Password:</label>
+   <input formControlName="password" type="password" placeholder="Password" >
+   </div>
+   <small *ngIf="loginForm.controls['password'].dirty && loginForm.hasError('required','password')" class="text-danger">Password is required!</small>   
+   <input class="btn btn-primary mt-4 w-100" (click)="onLogin()" type="submit" value="Увійти">
+   <div class="text-center pt-4 text-muted">Don't have account?<a id="forget" routerLink="/registration">Register!</a></div>
+
+   </form>
+  
+</div>
