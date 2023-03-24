@@ -14,5 +14,6 @@ namespace INFORCE.Models.Data
         {
             base.OnModelCreating(builder);
         }
+        public DbSet<URLs> Urls { get; set; }
     }
 }

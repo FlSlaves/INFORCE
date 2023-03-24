@@ -1,7 +1,9 @@
 using INFORCE.Models;
 using INFORCE.Models.Data;
+using INFORCE.Services;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
@@ -48,6 +50,13 @@ builder.Services.AddCors(options => options.AddPolicy("Policy", builder =>
     .AllowAnyHeader()
     .WithExposedHeaders("Token-Expired");
 }));
+
+builder.Services.AddTransient<IAuthorizeService, AuthorizeService>();
+builder.Services.AddTransient<IUrlService, UrlService>();
+
+
+
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
@@ -63,5 +72,15 @@ app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapControllers();
+
+app.MapFallback(async (AppDbContext db, HttpContext ctx) =>
+{
+    var path = ctx.Request.Path.ToUriComponent().Trim('/');
+    var urlMatch = await db.Urls
+    .FirstOrDefaultAsync(u => u.ShortUrl.ToLower().Trim() == path.Trim());
+    if (urlMatch == null)
+        return Results.BadRequest("No such shortUrl");
+    return Results.Redirect(urlMatch.Url);
+});
 
 app.Run();

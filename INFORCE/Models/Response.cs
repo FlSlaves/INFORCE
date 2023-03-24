@@ -1,8 +1,9 @@
 ﻿namespace INFORCE.Models
 {
-    public class Response
+    public class ResponseMessage
     {
         public string? Status { get; set; }
         public string? Message { get; set; }
+        public string? Token { get; set; }
     }
 }
