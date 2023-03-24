@@ -16,17 +16,27 @@ import { UserStoreService } from 'src/app/services/user-store.service';
 })
 export class URLtableComponent implements OnInit{
     title = 'Table';
+
     @Input() url?: urltable;
+
     tableMode: boolean = true;
+
     @Output() urlUpd = new EventEmitter<urltable[]>();
 
     urlEdit: urltable = new urltable();
+
     user!: User;
+
     getUserNameFromToken: string ='';
+
     getRoleFromToken: string = '';
+
     URLs: urltable[] =[];
+
     isVisible:any;
+
     deletable:any;
+    
     canDelete: CanDelete[] = [];
     constructor(private urltableservise: UrltableService, private userStor: UserStoreService,private auth:AuthService){}
     ngOnInit(): void {

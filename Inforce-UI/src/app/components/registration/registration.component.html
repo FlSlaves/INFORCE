@@ -17,12 +17,13 @@
       <small *ngIf="regForm.controls['username'].dirty && regForm.hasError('required','username')" class="text-danger">User Name is
          required!</small>
    <div class="form-gpoup pt-3">
-         <label for="password">Password:</label>
+         <label for="password">Password:</label><br>
+         <small class="text-danger">Password example: qwE12#<br>(at least 1 upper/lower case, digit and spec simb)</small>
          <input formControlName="password" type="password" placeholder="Password">
    </div>
 <small *ngIf="regForm.controls['password'].dirty && regForm.hasError('required','password')" class="text-danger">Password is
    required!</small>
-      <input (click)="onReg()" class="btn btn-primary mt-4 w-100" type="submit" value="Увійти">
+      <input (click)="onReg()" class="btn btn-primary mt-4 w-100" type="submit" value="Register!">
       <div class="text-center pt-4 text-muted">Already have account?<a id="forget"
             routerLink="/login">Sign in!</a></div>
 

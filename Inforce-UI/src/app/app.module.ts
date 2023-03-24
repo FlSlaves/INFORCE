@@ -13,6 +13,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { URLtableComponent } from './components/urltable/urltable.component';
 import { RouterModule } from '@angular/router';
 import { DetailviewComponent } from './components/detailview/detailview.component';
+import { AboutComponent } from './components/about/about.component';
 
 
 
@@ -23,7 +24,8 @@ import { DetailviewComponent } from './components/detailview/detailview.componen
     LoginComponent,
     RegistrationComponent,
     URLtableComponent,
-    DetailviewComponent
+    DetailviewComponent,
+    AboutComponent
   ],
   imports: [
     BrowserModule,

@@ -28,7 +28,7 @@
       </td>
    </tr>  
 </table>
-<button (click)="initNewUrl()" class="w3-btn w3-ripple btn btn-success">&#1212; Create new Record</button>
+<button *ngIf="isVisible" (click)="initNewUrl()" class="w3-btn w3-ripple btn btn-success">&#1212; Create new Record</button>
 
 <!--шаблон для редактирования-->
 <ng-template #edit>
@@ -48,14 +48,22 @@
 </ng-template>
 
 <ng-template #create>
-<h5>Input new url to create a short version!</h5>
+   <tbody></tbody>
+<div class="outer">
+      <h5>Input new url to create a short version!</h5>
+      <td>
+      <label for="name-input">Name:</label>
+      <input type="text" [(ngModel)]="urlEdit.urlName" class="form-control" />
+      </td>
+   <br>
    <td>
-      <input type="text" [(ngModel)]="urlEdit.url" [(ngModel)]="urlEdit.shortUrl" class="form-control" />
-      <input  type="text" [(ngModel)]="urlEdit.urlName" class="form-control" />
-   </td>
-   <td>
-      <input type="button" value="Save" (click)="createUrl(urlEdit)" class="btn btn-sm btn-success" /><br>
-      <input type="button" value="Cancel" (click)="cancel()" class="btn btn-sm btn-warning" />
-   </td>
+   <label for="url-input">URL:</label>
+       <input type="text" [(ngModel)]="urlEdit.url" [(ngModel)]="urlEdit.shortUrl" class="form-control" /> 
+      </td>
+   <div>
+      <button type="submit" class="btn btn-sm btn-success" (click)="createUrl(urlEdit)">Submit</button>&nbsp;&nbsp;
+      <button type="reset" class="btn btn-sm btn-warning"  (click)="cancel()">Reset</button>
+   </div>
+</div>
 </ng-template>
 </body>
